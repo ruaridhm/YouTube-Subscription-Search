@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Roboto-400';
+  src: local('Roboto-400'), url(./fonts/Roboto-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto-300';
+  src: local('Roboto-300'), url(./fonts/Roboto-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto-100';
+  src: local('Roboto-100'), url(./fonts/Roboto-Thin.ttf) format('truetype');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Trade-Gothic';
+  src: local('Trade-Gothic'),
+    url(./fonts/TradeGothicLTStd-Bold.otf) format('opentype');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  font-family: 'Roboto-400';
+  font-size: 62.5%;
+}
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+*::before,
+::after {
+  box-sizing: border-box;
 }
