@@ -53,11 +53,12 @@ const ListDetailsSubscriptionDescription = styled(SubscriptionDescription)`
   margin-left: 1.5rem;
 `;
 
-const SubscriptionDetailsItem = ({
+const SubscriptionItem = ({
   item,
   selectedSubs,
   setSelectedSubs,
   displayType,
+  selected,
 }) => {
   const [active, setActive] = useState(false);
 
@@ -105,4 +106,4 @@ const SubscriptionDetailsItem = ({
   );
 };
 
-export default SubscriptionDetailsItem;
+export default SubscriptionItem;

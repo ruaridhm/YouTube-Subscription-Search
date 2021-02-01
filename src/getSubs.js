@@ -5,14 +5,16 @@ const getAllSubscriptions = (
   setShowSubscriptionSelect,
   userId
 ) => {
-  var store = require('store');
-  const getSubscription = (setSubResultsArr, userId) => {
+  const store = require('store');
+
+  const getSubscription = (setSubResultsArr, userId, pageToken) => {
     return gapi.client.youtube.subscriptions
       .list({
         part: ['snippet,contentDetails'],
         channelId: userId,
         order: 'alphabetical',
         maxResults: 50,
+        pageToken: pageToken,
       })
       .then(
         function (response) {
@@ -28,10 +30,21 @@ const getAllSubscriptions = (
                 thumbnails: element.snippet.thumbnails.default.url,
                 totalItems: element.contentDetails.totalItemCount,
                 newItems: element.contentDetails.newItemCount,
+                selected: false,
                 videos: [],
               },
             ]);
           });
+
+          if (response.result.nextPageToken) {
+            console.log('if');
+            console.log(response.result.nextPageToken);
+            pageToken = response.result.nextPageToken;
+            getSubscription(setSubResultsArr, userId, pageToken);
+          } else {
+            console.log('else hit inner loop returned');
+            return;
+          }
         },
         function (err) {
           console.error('Execute error', err);
@@ -50,7 +63,6 @@ const getAllSubscriptions = (
     getSubscription(setSubResultsArr, userId);
   }
   setShowSubscriptionSelect(true);
-  return;
 };
 
 export default getAllSubscriptions;

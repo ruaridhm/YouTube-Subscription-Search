@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+//Components
 import Button from '../Button/Button';
+//Functions
 import getSubVideos from '../getSubVideos';
 import getVideoDetails from '../getVideoDetails';
 //List views
 import SubscriptionItem from './SubscriptionItem';
-//svg
+//SVG
 import list from '../SVG/list.svg';
 import listDetails from '../SVG/detailedList.svg';
 import details from '../SVG/details.svg';
@@ -36,6 +38,8 @@ const DisplaySizesContainer = styled.div`
   flex-direction: row;
 `;
 
+const ResultsContainer = styled.div``;
+
 const SubscriptionSelect = ({
   subResults,
   selectedSubs,
@@ -63,13 +67,18 @@ const SubscriptionSelect = ({
       : getSubscriptionsVideos();
     setShowSubscriptionSelect(false);
   };
+  // const selectAllHandler = (e) => {
+  //   e.preventDefault();
+  //   setSelectedSubs(subResults);
+  //   console.log('hide subSelect and show search ');
+  //   getSubscriptionsVideos();
+  //   setShowSubscriptionSelect(false);
+  // };
+
   const selectAllHandler = (e) => {
     e.preventDefault();
-    setSelectedSubs(subResults);
-    console.log('hide subSelect and show search ');
-    getSubscriptionsVideos();
-    setShowSubscriptionSelect(false);
   };
+
   return (
     <>
       <SubscriptionSelectHeader>
@@ -103,18 +112,20 @@ const SubscriptionSelect = ({
             }}
           />
         </DisplaySizesContainer>
-
-        {subResults.map((element) => {
-          return (
-            <SubscriptionItem
-              item={element}
-              key={element.channelId}
-              selectedSubs={selectedSubs}
-              setSelectedSubs={setSelectedSubs}
-              displayType={displayType}
-            />
-          );
-        })}
+        <ResultsContainer>
+          {subResults.map((element) => {
+            return (
+              <SubscriptionItem
+                item={element}
+                key={element.channelId}
+                selectedSubs={selectedSubs}
+                setSelectedSubs={setSelectedSubs}
+                displayType={displayType}
+                selected={element.selected}
+              />
+            );
+          })}
+        </ResultsContainer>
       </SubscriptionSelectContainer>
     </>
   );
